@@ -26,7 +26,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST'){
         die("Connection failed: " . $conn->connect_error);
         }
 
-        $email = $_POST['email'];
+        $email = mysqli_real_escape_string($conn,$_POST['email']);
         $password = hash('sha256', $_POST['password']);
 
         $sql = "SELECT * FROM comptes WHERE email='$email' AND password='$password'";
